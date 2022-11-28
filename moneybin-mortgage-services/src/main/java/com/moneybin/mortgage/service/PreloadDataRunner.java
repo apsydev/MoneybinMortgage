@@ -1,7 +1,6 @@
 package com.moneybin.mortgage.service;
 
 import com.moneybin.mortgage.dto.MortgageDto;
-import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -16,17 +15,17 @@ import org.springframework.util.FileCopyUtils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Runner used to populate DB with initial data from provided file with loans data.
+ * Print uploaded data to console output.
+ */
 @RequiredArgsConstructor
 public class PreloadDataRunner implements ApplicationRunner {
 
-    Logger logger = LoggerFactory.getLogger(PreloadDataRunner.class);
+    private Logger logger = LoggerFactory.getLogger(PreloadDataRunner.class);
 
     @NonNull
     private MortgageCalculationFacade facade;
@@ -51,17 +50,6 @@ public class PreloadDataRunner implements ApplicationRunner {
         }
     }
 
-    /*private List<MortgageDto> readAndCreateMortageDto() throws IOException, URISyntaxException {
-        List<MortgageDto> mortgageDtos = new ArrayList<>();
-        URL resource = this.getClass().getClassLoader().getResource("loans.csv");
-        if(resource != null) {
-            Path path = Paths.get(resource.toURI());
-            byte[] data = Files.readAllBytes(path);
-            mortgageDtos = facade.calculateMonthlyInstalment(data);
-            facade.saveMortgageLoans(mortgageDtos);
-        }
-        return mortgageDtos;
-    }*/
     private List<MortgageDto> readAndCreateMortageDto() throws IOException, URISyntaxException {
         Resource resource = resourceLoader.getResource("classpath:loans.csv");
         InputStream inputStream = resource.getInputStream();

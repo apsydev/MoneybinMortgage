@@ -12,7 +12,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @AllArgsConstructor
 public class MortgageServiceImpl implements MortgageService {
@@ -29,21 +28,11 @@ public class MortgageServiceImpl implements MortgageService {
         return a.divide(b,2, RoundingMode.HALF_EVEN);
     }
 
+    @Override
     public List<MortgageDto> retrieveAllLoans(){
         List<MortgageDto> mortgageDtos = new ArrayList<>();
         mortgageLoansRepo.findAll().forEach(mortgageLoan -> mortgageDtos.add(createMortgageLoanDto(mortgageLoan)));
         return mortgageDtos;
-    }
-
-    private MortgageDto createMortgageLoanDto(MortgageLoan mortgageLoan) {
-        return MortgageDto.builder()
-                .loanAmount(mortgageLoan.getLoanAmount())
-                .loanDurationYears(mortgageLoan.getLoanDurationYears())
-                .interestRate(mortgageLoan.getInterestRate())
-                .customerName(mortgageLoan.getCustomer().getName())
-                .monthlyInstalment(mortgageLoan.getMonthlyInstalment())
-                .loanId(mortgageLoan.getId())
-                .build();
     }
 
     @Override
@@ -103,5 +92,16 @@ public class MortgageServiceImpl implements MortgageService {
         loan.setInterestRate(mortgageDto.getInterestRate());
         loan.setMonthlyInstalment(mortgageDto.getMonthlyInstalment());
         return loan;
+    }
+
+    private MortgageDto createMortgageLoanDto(MortgageLoan mortgageLoan) {
+        return MortgageDto.builder()
+                .loanAmount(mortgageLoan.getLoanAmount())
+                .loanDurationYears(mortgageLoan.getLoanDurationYears())
+                .interestRate(mortgageLoan.getInterestRate())
+                .customerName(mortgageLoan.getCustomer().getName())
+                .monthlyInstalment(mortgageLoan.getMonthlyInstalment())
+                .loanId(mortgageLoan.getId())
+                .build();
     }
 }

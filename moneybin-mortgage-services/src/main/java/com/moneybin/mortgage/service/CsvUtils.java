@@ -28,7 +28,7 @@ public class CsvUtils {
             CSVParser csvParser = CSVFormat.Builder.create(DEFAULT)
                     .setHeader()
                     .setSkipHeaderRecord(true)
-                    .setDelimiter(",")
+                    .setDelimiter(COMMA)
                     .build()
                     .parse(
                     new InputStreamReader(new ByteArrayInputStream(csvBytes), UTF_8));
@@ -44,20 +44,6 @@ public class CsvUtils {
             logger.error("Cannot parse csv file");
             throw new IllegalStateException("wrong csv file content",e);
         }
-       /*
-        try(Scanner scanner = new Scanner(new ByteArrayInputStream(csvBytes))){
-            while (scanner.hasNextLine()) {
-                String customerLine = scanner.nextLine();
-                String[] customerData = customerLine.split(COMMA);
-                customers.add(MortgageDto.builder()
-                        .customerName(customerData[0])
-                        .loanAmount(new BigDecimal(customerData[1]))
-                        .interestRate(new BigDecimal(customerData[2]))
-                        .loanDurationYears(Integer.valueOf(customerData[3]))
-                        .build());
-            }
-        }*/
         return customers;
     }
-
 }

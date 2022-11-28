@@ -29,15 +29,46 @@ public interface MortgageService {
      */
     BigDecimal calculateMonthlyInstalment(BigDecimal loanAmount, BigDecimal interestRate, Integer periodInMonths);
 
+    /**
+     * Retrieves all mortgage loans
+     *
+     * @return  list of {@link MortgageDto}
+     */
     List<MortgageDto> retrieveAllLoans();
 
+    /**
+     * Retrieves all customers
+     *
+     * @returnlist of {@link CustomerDto}
+     */
     List<CustomerDto> retrieveAllCustomers();
 
+    /**
+     * Persist mortgage loan
+     *
+     * @param mortgageDto  mortgage loan to be saved
+     */
     void saveNewMortgageLoan(MortgageDto mortgageDto);
 
+    /**
+     * Updates mortgage loan data
+     *
+     * @param loanId       mortgage loan id
+     * @param mortgageDto  mortgage loan to be updated
+     */
     void updateMortgageLoan(Long loanId, MortgageDto mortgageDto);
 
+    /**
+     * Fetch mortgage loan by id
+     *
+     * @param id  id of loan to find
+     * @return  mortgageDto  mortgage loan found
+     */
     MortgageDto findMortgageLoanById(Long id);
 
+    /**
+     * Deletes mortgage loan
+     * @param id  of mortgage loan to be deleted
+     */
     void deleteMortgageLoanById(Long id);
 }
