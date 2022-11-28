@@ -1,0 +1,12 @@
+<form action="#"
+      th:action="@{/update/{id}(id=${loan.loanId})}"
+      th:object="${loan}"
+      method="post">
+    <label for="name">loanAmount</label>
+    <input type="text" th:field="*{loanAmount}" id="loanAmount" placeholder="Loan Amount">
+    <label for="email">interestRate</label>
+    <input type="text" th:field="*{interestRate}" id="interestRate" placeholder="Interest Rate">
+    <label for="email">loanDurationYears</label>
+    <input type="text" th:field="*{loanDurationYears}" id="loanDurationYears" placeholder="Loan Duration Years">
+    <input type="submit" value="Update Mortgage Loan">
+</form>

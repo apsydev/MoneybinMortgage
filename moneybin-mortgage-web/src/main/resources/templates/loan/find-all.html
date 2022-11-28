@@ -1,0 +1,34 @@
+<div th:switch="${loans}">
+    <h2 th:case="null">No loans yet!</h2>
+    <div th:case="*">
+        <h2>Loans</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Customer Name</th>
+                <th>Loan Amount</th>
+                <th>Interest Rate</th>
+                <th>Loan Duration Years</th>
+                <th>Monthly Instalment</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="mortgageLoan : ${loans}">
+                <td th:text="${mortgageLoan.customerName}"></td>
+                <td th:text="${mortgageLoan.loanAmount}"></td>
+                <td th:text="${mortgageLoan.interestRate}"></td>
+                <td th:text="${mortgageLoan.loanDurationYears}"></td>
+                <td th:text="${mortgageLoan.monthlyInstalment}"></td>
+                <td><a th:href="@{/edit/{id}(id=${mortgageLoan.loanId})}">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${mortgageLoan.loanId})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="add-loan">Add new loan</a></p>
+    <form action="#" th:action="@{/calculate-instalment}" method="post" th:object="${mortgageLoan}">
+        <input type="submit" value="Calculate monthly instalment">
+    </form>
+</div>

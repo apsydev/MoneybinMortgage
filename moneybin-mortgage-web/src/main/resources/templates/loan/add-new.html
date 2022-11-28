@@ -1,0 +1,18 @@
+<form action="#" th:action="@{/save-loan}" th:object="${mortgageLoan}" method="post">
+    <label for="customerName"> Customer Name</label>
+    <select th:field="*{customerName}" id="customerName" name="customerName" placeholder="customerName" >
+            <option value="">Select Customer</option>
+            <option th:each="cust : ${customers}"
+                    th:value="${cust.customerName}"
+                    th:text="${cust.customerName}"></option>
+    </select>
+
+    <label for="loanAmount">Loan Amount</label>
+    <input type="text" th:field="*{loanAmount}" id="loanAmount" placeholder="loanAmount">
+    <label for="interestRate">Interest Rate</label>
+    <input type="text" th:field="*{interestRate}" id="interestRate" placeholder="interestRate">
+    <label for="loanDurationYears">Loan Duration Years</label>
+    <input type="text" th:field="*{loanDurationYears}" id="loanDurationYears" placeholder="loanDurationYears">
+
+    <input type="submit" value="Save">
+</form>
