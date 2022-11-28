@@ -59,7 +59,26 @@ There are three REST endpoints available:
 ]
 ```
 #### 3. /api/moneybin/mortgage/instalment/customers/bulk
-   Used to calculate mortgage loan per attached file with customers data. 
+   Used to calculate mortgage loan per attached csv file with customers data. 
+   ```csv
+Customer,Total mortgageLoan,Interest,Years
+Juha,1000,5,2
+Karvinen,4356,1.27,6
+Claes Månsson,1300.55,8.67,2
+"Clarencé,Andersson",2000,6,4
+
+
+
+
+
+
+
+
+
+
+.
+```
+   
 
 
 ## Important note
